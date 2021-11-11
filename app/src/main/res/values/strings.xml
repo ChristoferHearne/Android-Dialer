@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Dialer</string>
+    <string name="header_info">What would you like to do?</string>
+    <string name="button_dial">DIAL</string>
+    <string name="button_call_list">CALL LIST</string>
+    <string name="button_settings">SETTINGS</string>
+    <string name="button_map">MAP</string>
+    <string name="button_about">ABOUT</string>
 </resources>
