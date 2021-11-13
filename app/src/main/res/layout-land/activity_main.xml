@@ -33,7 +33,9 @@
         </TableRow>
 
         <TableRow android:gravity="center">
+
             <FrameLayout android:layout_height="wrap_content">
+
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -53,8 +55,12 @@
             </FrameLayout>
         </TableRow>
 
-        <TableRow android:gravity="center">
+        <TableRow
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
+
             <FrameLayout android:layout_height="wrap_content">
+
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -74,11 +80,11 @@
             </FrameLayout>
         </TableRow>
 
-        <TableRow android:gravity="center">
+        <TableRow
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+            <FrameLayout android:layout_gravity="center">
 
                 <Button
                     android:layout_width="200dp"
