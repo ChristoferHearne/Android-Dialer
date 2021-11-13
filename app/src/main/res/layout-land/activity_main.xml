@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/button_dial"
+                    android:onClick="goToDial"
                     android:text="@string/button_dial" />
             </FrameLayout>
 
@@ -51,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/button_call_list"
+                    android:onClick="goToCallList"
                     android:text="@string/button_call_list" />
             </FrameLayout>
         </TableRow>
@@ -66,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/button_settings"
+                    android:onClick="goToSettings"
                     android:text="@string/button_settings" />
             </FrameLayout>
 
@@ -76,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/button_map"
+                    android:onClick="goToMap"
                     android:text="@string/button_map" />
             </FrameLayout>
         </TableRow>
@@ -85,11 +89,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout android:layout_gravity="center">
-
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/button_about"
+                    android:onClick="showAboutDialog"
                     android:text="@string/button_about" />
             </FrameLayout>
         </TableRow>

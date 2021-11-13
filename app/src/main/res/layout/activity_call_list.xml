@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="se.miun.chhe1903.dt031g.dialer.DialActivity">
+    tools:context=".CallListActivity">
     <TextView
-        android:id="@+id/dialTextView"
+        android:id="@+id/callListTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/dial_activity_message"
-        android:text="@string/dial_activity_message"
+        android:hint="@string/call_list_activity_message"
+        android:text="@string/call_list_activity_message"
         android:textColorHint="@color/primaryDarkColor"
         android:textColor="@color/primaryDarkColor"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
