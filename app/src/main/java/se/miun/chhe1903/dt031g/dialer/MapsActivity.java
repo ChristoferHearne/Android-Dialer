@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import se.miun.chhe1903.dt031g.dialer.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    // Auto-created stub from wizard
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 

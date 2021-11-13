@@ -15,9 +15,6 @@
     <string name="settings_activity_message">This is the Settings Activity</string>
     <string name="map_activity_message">This is the Map Activity</string>
 
-    <!-- About Dialog -->
-    <string name="dialog_title">About</string>
-
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
