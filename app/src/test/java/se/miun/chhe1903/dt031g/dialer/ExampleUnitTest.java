@@ -1,4 +1,4 @@
-package com.example.dialer;
+package se.miun.chhe1903.dt031g.dialer;
 
 import org.junit.Test;
 
