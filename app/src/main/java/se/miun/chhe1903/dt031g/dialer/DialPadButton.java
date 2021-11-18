@@ -10,10 +10,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 public class DialPadButton extends ConstraintLayout {
-    public DialPadButton(Context context) {
-        super(context);
+    public DialPadButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
         initDialLayout(context);
-        TypedArray arr = context.obtainStyledAttributes(null, R.styleable.DialPadButton);
+        TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.DialPadButton);
         CharSequence title = arr.getString(R.styleable.DialPadButton_title);
         CharSequence message = arr.getString(R.styleable.DialPadButton_message);
         arr.recycle();
@@ -21,9 +21,6 @@ public class DialPadButton extends ConstraintLayout {
             this.setMessage(message.toString());
             this.setTitle(title.toString());
         }
-    }
-    public DialPadButton(Context context, AttributeSet attrs){
-        super(context, attrs);
     }
 
     private void initDialLayout(Context context){
