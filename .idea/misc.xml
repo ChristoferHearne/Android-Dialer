@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/activity_dial.xml" value="0.3540564373897707" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/dial_pad_button.xml" value="0.2808641975308642" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_call_list.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_dial.xml" value="0.25" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_main.xml" value="0.25" />
