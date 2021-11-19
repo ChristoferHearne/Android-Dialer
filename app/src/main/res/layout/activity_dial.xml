@@ -15,6 +15,8 @@
         android:orientation="vertical"
         android:gravity="center">
         <se.miun.chhe1903.dt031g.dialer.DialPadButton
+            android:id="@+id/dial_button_3"
+            android:background="@color/buttonPrimaryBackground"
             android:layout_width="50dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,6 +27,7 @@
             app:message="GHI"/>
         <se.miun.chhe1903.dt031g.dialer.DialPadButton
             android:layout_width="200dp"
+            android:background="@color/buttonPrimaryBackground"
             android:layout_height="200dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +37,7 @@
             app:message="ABC"/>
         <se.miun.chhe1903.dt031g.dialer.DialPadButton
             android:layout_width="100dp"
+            android:background="@color/buttonPrimaryBackground"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -2,14 +2,18 @@ package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 public class DialPadButton extends ConstraintLayout {
+    // Constructor with context and AttributeSet
     public DialPadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         initDialLayout(context);
@@ -22,6 +26,17 @@ public class DialPadButton extends ConstraintLayout {
             this.setTitle(title.toString());
         }
     }
+    // Constructor with context only
+    public DialPadButton(Context context){
+        this(context, null);
+        initDialLayout(context);
+    }
+    // Constructor with context, AttributeSet and defStyle
+    public DialPadButton(Context context, AttributeSet attrs, int defStyle){
+        super(context, attrs, defStyle);
+        initDialLayout(context);
+    }
+
 
     private void initDialLayout(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -35,4 +50,5 @@ public class DialPadButton extends ConstraintLayout {
         TextView messageText = findViewById(R.id.dial_button_message);
         messageText.setText(message.substring(0, 3).toUpperCase());
     }
+
 }
