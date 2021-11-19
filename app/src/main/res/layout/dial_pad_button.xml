@@ -19,8 +19,8 @@
             android:layout_height="0dp"
             android:layout_weight="75"
             app:autoSizeTextType="uniform"
-            android:textColorHint="@color/primaryDarkColor"
-            android:textColor="@color/primaryDarkColor"
+            android:textColorHint="@color/primaryLightColor"
+            android:textColor="@color/primaryLightColor"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
             >
@@ -31,8 +31,8 @@
             android:layout_height="0dp"
             android:layout_weight="25"
             app:autoSizeTextType="uniform"
-            android:textColorHint="@color/primaryDarkColor"
-            android:textColor="@color/primaryDarkColor"
+            android:textColorHint="@color/primaryLightColor"
+            android:textColor="@color/primaryLightColor"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
             >

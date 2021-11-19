@@ -15,7 +15,6 @@
         android:orientation="vertical"
         android:gravity="center">
         <se.miun.chhe1903.dt031g.dialer.DialPadButton
-            android:id="@+id/dial_button_3"
             android:background="@color/buttonPrimaryBackground"
             android:layout_width="50dp"
             android:layout_height="100dp"
