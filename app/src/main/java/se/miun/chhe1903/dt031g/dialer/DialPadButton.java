@@ -30,11 +30,13 @@ public class DialPadButton extends ConstraintLayout {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
                     v.setBackgroundResource(R.drawable.button_shape);
+
                     v.invalidate();
                     return true;
                 }
                 case MotionEvent.ACTION_UP: {
                     v.setBackgroundResource(R.drawable.button_shape_clicked);
+
                     v.invalidate();
                     break;
                 }
