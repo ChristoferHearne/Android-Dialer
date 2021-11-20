@@ -29,12 +29,12 @@ public class DialPadButton extends ConstraintLayout {
         this.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
-                    v.getBackground().setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP);
+                    v.setBackgroundResource(R.drawable.button_shape);
                     v.invalidate();
                     return true;
                 }
                 case MotionEvent.ACTION_UP: {
-                    v.getBackground().clearColorFilter();
+                    v.setBackgroundResource(R.drawable.button_shape_clicked);
                     v.invalidate();
                     break;
                 }
