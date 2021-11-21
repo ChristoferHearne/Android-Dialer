@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,27 +23,13 @@ public class DialPadButton extends ConstraintLayout {
         CharSequence title = arr.getString(R.styleable.DialPadButton_title);
         CharSequence message = arr.getString(R.styleable.DialPadButton_message);
         arr.recycle();
+
         if (title != null && message != null){
             this.setMessage(message.toString());
             this.setTitle(title.toString());
         }
-        this.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: {
-                    v.setBackgroundResource(R.drawable.button_shape_clicked);
 
-                    v.invalidate();
-                    return true;
-                }
-                case MotionEvent.ACTION_UP: {
-                    v.setBackgroundResource(R.drawable.button_shape);
-
-                    v.invalidate();
-                    break;
-                }
-            }
-            return false;
-        });
+        addOnTouch();
     }
     // Constructor with context only
     public DialPadButton(Context context){
@@ -54,7 +41,24 @@ public class DialPadButton extends ConstraintLayout {
         super(context, attrs, defStyle);
         initDialLayout(context);
     }
-
+    private void addOnTouch(){
+        this.setOnTouchListener((view, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    TransitionDrawable transition = (TransitionDrawable) view.getBackground();
+                    transition.startTransition(100);
+                    view.invalidate();
+                    return true;
+                }
+                case MotionEvent.ACTION_UP: {
+                    TransitionDrawable transition = (TransitionDrawable) view.getBackground();
+                    transition.reverseTransition(100);
+                    break;
+                }
+            }
+            return false;
+        });
+    }
 
     private void initDialLayout(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

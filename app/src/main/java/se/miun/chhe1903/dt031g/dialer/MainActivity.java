@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         // Shows a dialog with information about the app
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this); // Applies settings
         dialogBuilder.setTitle(title) //
-                // Custom dialog message, could create a separate layout for this
-                    // This still does the job and does not seem to be bad practice
-                        // u2022 is a reference to a bullet point
                 .setMessage(aboutMessages[0] +
                         aboutMessages[1] +
                         aboutMessages[2] +
