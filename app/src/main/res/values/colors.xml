@@ -8,6 +8,6 @@
     <color name="secondaryDarkColor">#0026ca</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#ffffff</color>
-    <color name="buttonPrimaryBackground">#C0C0C0</color>
+    <color name="buttonPrimaryBackground">#ffffff</color>
     <color name="buttonClickedBackground">#d3d3d3</color>
 </resources>

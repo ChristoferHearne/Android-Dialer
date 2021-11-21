@@ -30,4 +30,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <!-- About Dialog -->
+    <string name="about_title">About</string>
+    <string name="about_ok_button">OK</string>
 </resources>

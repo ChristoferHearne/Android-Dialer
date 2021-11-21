@@ -35,20 +35,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(mapsIntent);
    }
    public void showAboutDialog(View view){ // When a user clicks the About-button
+        // String resources
+        String title = getResources().getString(R.string.about_title);
+        String[] aboutMessages = getResources().getStringArray(R.array.about_messages);
+        String buttonTitle = getResources().getString(R.string.about_ok_button);
         // Shows a dialog with information about the app
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this); // Applies settings
-        dialogBuilder.setTitle("About") //
+        dialogBuilder.setTitle(title) //
                 // Custom dialog message, could create a separate layout for this
                     // This still does the job and does not seem to be bad practice
                         // u2022 is a reference to a bullet point
-                .setMessage("This app is supposed to mimic the keypad on a phone.\n\n" +
-                        "This app will consist of:\n\n" +
-                        "\u2022 Enter numbers to dial\n" +
-                        "\u2022 See previously dialed numbers\n" +
-                        "\u2022 Change the keypad settings\n" +
-                        "\u2022 Show on a map where previously calls are dialed from\n"
+                .setMessage(aboutMessages[0] +
+                        aboutMessages[1] +
+                        aboutMessages[2] +
+                        aboutMessages[3] +
+                        aboutMessages[4]
                 )
-                .setPositiveButton("OK", null); // Set the dialog button
+                .setPositiveButton(buttonTitle, null); // Set the dialog button
         Dialog dialog = dialogBuilder.create(); // Creates a new dialog based on the builder
         dialog.show(); // Shows the dialog
    }

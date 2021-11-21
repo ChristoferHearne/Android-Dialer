@@ -9,4 +9,11 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+    <string-array name="about_messages">
+        <item>This app is supposed to mimic the keypad on a phone.\n\n</item>
+        <item>This app will consist of:\n\n</item>
+        <item>\u2022 Enter numbers to dial\n</item>
+        <item>\u2022 Change the keypad settings\n</item>
+        <item>\u2022 Show on a map where previous calls are dialed from\n</item>
+    </string-array>
 </resources>
