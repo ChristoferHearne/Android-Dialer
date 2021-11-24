@@ -1,14 +1,18 @@
 package se.miun.chhe1903.dt031g.dialer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    // Instance variables
+    private static boolean aboutOpened = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) { // Starts up the Main Activity
         super.onCreate(savedInstanceState);
@@ -39,17 +43,35 @@ public class MainActivity extends AppCompatActivity {
         String title = getResources().getString(R.string.about_title);
         String[] aboutMessages = getResources().getStringArray(R.array.about_messages);
         String buttonTitle = getResources().getString(R.string.about_ok_button);
-        // Shows a dialog with information about the app
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this); // Applies settings
-        dialogBuilder.setTitle(title) //
-                .setMessage(aboutMessages[0] +
-                        aboutMessages[1] +
-                        aboutMessages[2] +
-                        aboutMessages[3] +
-                        aboutMessages[4]
-                )
-                .setPositiveButton(buttonTitle, null); // Set the dialog button
-        Dialog dialog = dialogBuilder.create(); // Creates a new dialog based on the builder
-        dialog.show(); // Shows the dialog
+        if (aboutOpened){
+            String toastMessage = getResources().getString(R.string.about_toast_message);
+            Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            // Shows a dialog with information about the app
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this); // Applies settings
+            dialogBuilder.setTitle(title) //
+                    .setMessage(aboutMessages[0] +
+                            aboutMessages[1] +
+                            aboutMessages[2] +
+                            aboutMessages[3] +
+                            aboutMessages[4]
+                    )
+                    .setPositiveButton(buttonTitle, null); // Set the dialog button
+            Dialog dialog = dialogBuilder.create(); // Creates a new dialog based on the builder
+            dialog.show(); // Shows the dialog
+            aboutOpened = true;
+        }
    }
+   @Override
+   protected void onSaveInstanceState(@NonNull Bundle outState) {
+       super.onSaveInstanceState(outState);
+       outState.putBoolean("AboutOpened", aboutOpened);
+   }
+   @Override
+   protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+       super.onRestoreInstanceState(savedInstanceState);
+       savedInstanceState.getBoolean("AboutOpened");
+   }
+
 }
