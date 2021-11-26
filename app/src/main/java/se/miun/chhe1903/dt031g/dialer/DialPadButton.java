@@ -53,13 +53,8 @@ public class DialPadButton extends ConstraintLayout {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: { // If the button is pressed
                     // Play Sound
-                    try {
-                        SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
-                        soundPlayer.playSound(this);
-                        soundPlayer.destroy();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+                    SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
+                    soundPlayer.playSound(this);
                     // Fade animation
                     TransitionDrawable transition = (TransitionDrawable) view.getBackground();
                     transition.startTransition(100);
