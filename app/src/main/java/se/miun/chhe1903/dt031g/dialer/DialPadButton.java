@@ -15,6 +15,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 @SuppressLint("ClickableViewAccessibility")
 public class DialPadButton extends ConstraintLayout {
+    // Instance variables
+    private TextView titleText;
+    private TextView messageText;
+
+
+
     // Constructor with context and AttributeSet
     public DialPadButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -41,16 +47,27 @@ public class DialPadButton extends ConstraintLayout {
         super(context, attrs, defStyle);
         initDialLayout(context);
     }
-    private void addOnTouch(){
+
+    private void addOnTouch(){ // Adds fading animation to button when user interacts with it
         this.setOnTouchListener((view, event) -> {
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: {
+                case MotionEvent.ACTION_DOWN: { // If the button is pressed
+                    // Play Sound
+                    try {
+                        SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
+                        soundPlayer.playSound(this);
+                        soundPlayer.destroy();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    // Fade animation
                     TransitionDrawable transition = (TransitionDrawable) view.getBackground();
                     transition.startTransition(100);
                     view.invalidate();
                     return true;
                 }
-                case MotionEvent.ACTION_UP: {
+                case MotionEvent.ACTION_UP: { // If the button is released
+                    // Reverses the transition to animate back to original state
                     TransitionDrawable transition = (TransitionDrawable) view.getBackground();
                     transition.reverseTransition(100);
                     break;
@@ -60,17 +77,22 @@ public class DialPadButton extends ConstraintLayout {
         });
     }
 
-    private void initDialLayout(Context context){
+    private void initDialLayout(Context context){ // Inflates the view
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.dial_pad_button, this);
     }
+    // Getters and setters
     public void setTitle(String title){
-        TextView titleText = findViewById(R.id.dial_button_title);
+        titleText = findViewById(R.id.dial_button_title);
         titleText.setText(title.substring(0, 1));
     }
     public void setMessage(String message){
-        TextView messageText = findViewById(R.id.dial_button_message);
+        messageText = findViewById(R.id.dial_button_message);
         messageText.setText(message.substring(0, 3).toUpperCase());
     }
+    public String getTitle(){
+        return this.titleText.getText().toString();
+    }
+
 
 }

@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         String[] aboutMessages = getResources().getStringArray(R.array.about_messages);
         String buttonTitle = getResources().getString(R.string.about_ok_button);
         if (aboutOpened){
-            String toastMessage = getResources().getString(R.string.about_toast_message);
-            Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+            showToastMessage();
         }
         else{
             // Shows a dialog with information about the app
@@ -62,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             dialog.show(); // Shows the dialog
             aboutOpened = true;
         }
+   }
+   private void showToastMessage(){
+        String toastMessage = getResources().getString(R.string.about_toast_message);
+        Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+
    }
    @Override
    protected void onSaveInstanceState(@NonNull Bundle outState) {
