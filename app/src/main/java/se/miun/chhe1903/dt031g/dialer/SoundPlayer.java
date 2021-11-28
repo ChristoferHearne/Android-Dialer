@@ -16,7 +16,7 @@ public class SoundPlayer {
     private SoundPool soundPool;
     private int soundIDZero, soundIDOne, soundIDTwo, soundIDThree, soundIDFour, soundIDFive, soundIDSix, soundIDSeven,
     soundIDEight, soundIDNine, soundIDPound, soundIDStar;
-    boolean soundIsLoaded;
+    boolean soundIsLoaded = false;
 
     // Constructor
     private SoundPlayer(Context context) {
@@ -31,6 +31,7 @@ public class SoundPlayer {
     }
     // Functions
     public void playSound(DialPadButton dialPadButton){
+        if (soundIsLoaded){
             switch(dialPadButton.getTitle()){
                 case "0":
                     soundPool.play(soundIDZero, 25, 25, 1, 0, 1f);
@@ -69,12 +70,13 @@ public class SoundPlayer {
                     soundPool.play(soundIDPound, 1, 1, 1, 0, 1f);
                     break;
             }
+        }
     }
     private void initSoundPool(Context context){
         soundPool = new SoundPool.Builder()
                 .setMaxStreams(1)
                 .build();
-        soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
+        soundIDZero = soundPool.load(context, R.raw.zero, 1);
         soundIDOne = soundPool.load(context, R.raw.one, 1);
         soundIDTwo = soundPool.load(context, R.raw.two, 1);
         soundIDThree = soundPool.load(context, R.raw.three, 1);
@@ -84,8 +86,9 @@ public class SoundPlayer {
         soundIDSeven = soundPool.load(context, R.raw.seven, 1);
         soundIDEight = soundPool.load(context, R.raw.eight, 1);
         soundIDNine = soundPool.load(context, R.raw.nine, 1);
-        soundIDPound = soundPool.load(context, R.raw.one, 1);
-        soundIDStar = soundPool.load(context, R.raw.one, 1);
+        soundIDPound = soundPool.load(context, R.raw.pound, 1);
+        soundIDStar = soundPool.load(context, R.raw.star, 1);
+        soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
     }
     public void destroy(){
         soundPool.release();

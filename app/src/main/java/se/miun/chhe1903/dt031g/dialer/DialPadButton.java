@@ -30,10 +30,8 @@ public class DialPadButton extends ConstraintLayout {
         CharSequence message = arr.getString(R.styleable.DialPadButton_message);
         arr.recycle();
 
-        if (title != null && message != null){
-            this.setMessage(message.toString());
-            this.setTitle(title.toString());
-        }
+        this.setMessage(message.toString());
+        this.setTitle(title.toString());
 
         addOnTouch();
     }

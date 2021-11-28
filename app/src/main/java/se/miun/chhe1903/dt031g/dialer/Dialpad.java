@@ -1,14 +1,14 @@
 package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Dialpad extends ConstraintLayout {
-    public Dialpad(@NonNull Context context) {
-        super(context);
+    public Dialpad(Context context, AttributeSet attrs) {
+        super(context, attrs);
         initDialPadLayout(context);
     }
     private void initDialPadLayout(Context context){
