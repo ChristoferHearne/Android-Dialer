@@ -3,8 +3,6 @@ package se.miun.chhe1903.dt031g.dialer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -18,8 +16,7 @@ public class DialPadButton extends ConstraintLayout {
     // Instance variables
     private TextView titleText;
     private TextView messageText;
-
-
+    private SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
 
     // Constructor with context and AttributeSet
     public DialPadButton(Context context, AttributeSet attrs) {
@@ -32,7 +29,6 @@ public class DialPadButton extends ConstraintLayout {
 
         this.setMessage(message.toString());
         this.setTitle(title.toString());
-
         addOnTouch();
     }
     // Constructor with context only
@@ -51,7 +47,6 @@ public class DialPadButton extends ConstraintLayout {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: { // If the button is pressed
                     // Play Sound
-                    SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
                     soundPlayer.playSound(this);
                     // Fade animation
                     TransitionDrawable transition = (TransitionDrawable) view.getBackground();
