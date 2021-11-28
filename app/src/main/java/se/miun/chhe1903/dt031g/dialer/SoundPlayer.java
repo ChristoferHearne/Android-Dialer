@@ -63,7 +63,7 @@ public class SoundPlayer {
                 case "9":
                     soundPool.play(soundIDNine, 1, 1, 1, 0, 1f);
                     break;
-                case "*":
+                case "\uFF0A":
                     soundPool.play(soundIDStar, 1, 1, 1, 0, 1f);
                     break;
                 case "#":

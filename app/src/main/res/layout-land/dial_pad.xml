@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TableLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:stretchColumns="*">
@@ -11,82 +16,82 @@
             android:layout_weight="1">
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="1"
-                app:message="TEST"/>
+                app:message=""/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="2"
                 app:message="ABC"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="3"
                 app:message="DEF"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                app:title="*"
-                app:message="TEST"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:title="\uFF0A"
+                app:message=""/>
         </TableRow>
         <TableRow
             android:layout_weight="1">
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="4"
                 app:message="GHI"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="5"
                 app:message="JKL"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="6"
                 app:message="MNO"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="0"
-                app:message="+++"/>
+                app:message="+"/>
         </TableRow>
         <TableRow
             android:layout_weight="1">
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="7"
                 app:message="PQRS"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="8"
                 app:message="TUV"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:title="9"
                 app:message="WXYZ"/>
             <se.miun.chhe1903.dt031g.dialer.DialPadButton
                 android:background="@drawable/button_state_transition"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:title="#"
-                app:message="TEST"/>
+                app:message=""/>
         </TableRow>
 
     </TableLayout>

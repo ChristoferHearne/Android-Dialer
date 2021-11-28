@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_shape.xml" value="0.4348958333333333" />
-        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_shape_clicked.xml" value="0.904296875" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_shape_clicked.xml" value="0.25" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_state_transition.xml" value="0.5703125" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4348958333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/activity_dial.xml" value="0.22" />
