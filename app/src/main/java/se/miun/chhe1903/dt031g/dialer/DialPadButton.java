@@ -33,7 +33,7 @@ public class DialPadButton extends ConstraintLayout {
     }
     // Constructor with context only
     public DialPadButton(Context context){
-        this(context, null);
+        super(context);
         initDialLayout(context);
     }
     // Constructor with context, AttributeSet and defStyle
@@ -75,8 +75,8 @@ public class DialPadButton extends ConstraintLayout {
     }
     public void setMessage(String message){
         TextView messageText = findViewById(R.id.dial_button_message);
-        if (message.length() > 4){
-            messageText.setText(message.substring(0, 4).toUpperCase());
+        if (message.length() > 3){
+            messageText.setText(message.substring(0, 3).toUpperCase());
         }
         else{
             messageText.setText(message);
