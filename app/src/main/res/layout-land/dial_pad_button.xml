@@ -19,8 +19,8 @@
             android:layout_height="0dp"
             android:layout_weight="75"
             app:autoSizeTextType="uniform"
-            android:textColorHint="@color/primaryTextColor"
-            android:textColor="@color/secondaryTextColor"
+            android:textColorHint="@color/primaryDarkColor"
+            android:textColor="@color/primaryDarkColor"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
             >
@@ -29,12 +29,14 @@
             android:id="@+id/dial_button_message"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="25"
+            android:layout_weight="30"
             app:autoSizeTextType="uniform"
-            android:textColorHint="@color/primaryTextColor"
-            android:textColor="@color/secondaryTextColor"
+            android:textColorHint="@color/primaryDarkColor"
+            android:textColor="@color/primaryDarkColor"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="5dp"
             >
         </TextView>
     </LinearLayout>
