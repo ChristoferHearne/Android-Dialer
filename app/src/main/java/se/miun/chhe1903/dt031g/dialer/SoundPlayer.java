@@ -14,18 +14,13 @@ public class SoundPlayer {
     // Instance variables
     private static SoundPlayer INSTANCE = null;
     private SoundPool soundPool;
-    private int soundIDThree;
-    private int soundIDOne;
+    private int soundIDZero, soundIDOne, soundIDTwo, soundIDThree, soundIDFour, soundIDFive, soundIDSix, soundIDSeven,
+    soundIDEight, soundIDNine, soundIDPound, soundIDStar;
     boolean soundIsLoaded;
 
     // Constructor
     private SoundPlayer(Context context) {
-        soundPool = new SoundPool.Builder()
-                .setMaxStreams(1)
-                .build();
-        soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
-        soundIDThree = soundPool.load(context, R.raw.three, 1);
-        soundIDOne = soundPool.load(context, R.raw.one, 1);
+        initSoundPool(context);
     }
     // Singleton getInstance function
     public static SoundPlayer getInstance(Context context) {
@@ -38,42 +33,59 @@ public class SoundPlayer {
     public void playSound(DialPadButton dialPadButton){
             switch(dialPadButton.getTitle()){
                 case "0":
-                    soundPool.play(R.raw.zero, 25, 25, 1, 0, 1f);
+                    soundPool.play(soundIDZero, 25, 25, 1, 0, 1f);
                     break;
                 case "1":
                     soundPool.play(soundIDOne, 1, 1, 1, 0, 1f);
                     break;
                 case "2":
-                    soundPool.play(R.raw.two, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDTwo, 1, 1, 1, 0, 1f);
                     break;
                 case "3":
                     soundPool.play(soundIDThree, 25, 25, 1, 0, 1f);
                     break;
                 case "4":
-                    soundPool.play(R.raw.four, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDFour, 1, 1, 1, 0, 1f);
                     break;
                 case "5":
-                    soundPool.play(R.raw.five, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDFive, 1, 1, 1, 0, 1f);
                     break;
                 case "6":
-                    soundPool.play(R.raw.six, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDSix, 1, 1, 1, 0, 1f);
                     break;
                 case "7":
-                    soundPool.play(R.raw.seven, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDSeven, 1, 1, 1, 0, 1f);
                     break;
                 case "8":
-                    soundPool.play(R.raw.eight, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDEight, 1, 1, 1, 0, 1f);
                     break;
                 case "9":
-                    soundPool.play(R.raw.nine, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDNine, 1, 1, 1, 0, 1f);
                     break;
                 case "*":
-                    soundPool.play(R.raw.star, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDStar, 1, 1, 1, 0, 1f);
                     break;
                 case "#":
-                    soundPool.play(R.raw.pound, 1, 1, 1, 0, 1f);
+                    soundPool.play(soundIDPound, 1, 1, 1, 0, 1f);
                     break;
             }
+    }
+    private void initSoundPool(Context context){
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(1)
+                .build();
+        soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
+        soundIDOne = soundPool.load(context, R.raw.one, 1);
+        soundIDTwo = soundPool.load(context, R.raw.two, 1);
+        soundIDThree = soundPool.load(context, R.raw.three, 1);
+        soundIDFour = soundPool.load(context, R.raw.four, 1);
+        soundIDFive = soundPool.load(context, R.raw.five, 1);
+        soundIDSix = soundPool.load(context, R.raw.six, 1);
+        soundIDSeven = soundPool.load(context, R.raw.seven, 1);
+        soundIDEight = soundPool.load(context, R.raw.eight, 1);
+        soundIDNine = soundPool.load(context, R.raw.nine, 1);
+        soundIDPound = soundPool.load(context, R.raw.one, 1);
+        soundIDStar = soundPool.load(context, R.raw.one, 1);
     }
     public void destroy(){
         soundPool.release();
