@@ -76,12 +76,22 @@ public class DialPadButton extends ConstraintLayout {
     }
     // Getters and setters
     public void setTitle(String title){
-        titleText = findViewById(R.id.dial_button_title);
-        titleText.setText(title.substring(0, 1));
+        TextView titleText = findViewById(R.id.dial_button_title);
+        if (title.length() > 1){
+            titleText.setText(title.substring(0, 1));
+        }
+        else{
+            titleText.setText(title);
+        }
     }
     public void setMessage(String message){
-        messageText = findViewById(R.id.dial_button_message);
-        messageText.setText(message.substring(0, 3).toUpperCase());
+        TextView messageText = findViewById(R.id.dial_button_message);
+        if (message.length() > 4){
+            messageText.setText(message.substring(0, 4).toUpperCase());
+        }
+        else{
+            messageText.setText(message);
+        }
     }
     public String getTitle(){
         return this.titleText.getText().toString();
