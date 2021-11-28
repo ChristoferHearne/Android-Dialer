@@ -10,10 +10,5 @@ public class DialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
-
-        DialPadButton myButton = new DialPadButton(this);
-        myButton.setTitle("1-this-is-to-long");
-        myButton.setMessage("ABC-this-is-to-long");
-        setContentView(myButton);
     }
 }
