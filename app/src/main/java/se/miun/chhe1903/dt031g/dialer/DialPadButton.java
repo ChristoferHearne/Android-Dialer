@@ -81,8 +81,8 @@ public class DialPadButton extends ConstraintLayout {
     }
     public void setMessage(String message){
         messageText = findViewById(R.id.dial_button_message);
-        if (message.length() > 3){
-            messageText.setText(message.substring(0, 3).toUpperCase());
+        if (message.length() > 4){
+            messageText.setText(message.substring(0, 4).toUpperCase());
         }
         else{
             messageText.setText(message);
