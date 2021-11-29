@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import se.miun.chhe1903.dt031g.dialer.Util;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) { // Starts up the Main Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        importSoundFiles();
     }
     public void goToDial(View view){ // When a user clicks the Dial-button
         // Navigates to the Dial-view
@@ -77,5 +80,9 @@ public class MainActivity extends AppCompatActivity {
        super.onRestoreInstanceState(savedInstanceState);
        savedInstanceState.getBoolean("AboutOpened");
    }
-
+   private void importSoundFiles(){
+        if (!Util.defaultVoiceExist(this)){
+            Util.copyDefaultVoiceToInternalStorage(this);
+        }
+   }
 }
