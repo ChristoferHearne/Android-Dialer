@@ -2,12 +2,7 @@ package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
 import android.media.SoundPool;
-import android.media.SoundPool.OnLoadCompleteListener;
-
-import androidx.loader.content.Loader;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+import se.miun.chhe1903.dt031g.dialer.Util;
 
 
 public class SoundPlayer {
@@ -76,18 +71,18 @@ public class SoundPlayer {
         soundPool = new SoundPool.Builder()
                 .setMaxStreams(1)
                 .build();
-        soundIDZero = soundPool.load(context, R.raw.zero, 1);
-        soundIDOne = soundPool.load(context, R.raw.one, 1);
-        soundIDTwo = soundPool.load(context, R.raw.two, 1);
-        soundIDThree = soundPool.load(context, R.raw.three, 1);
-        soundIDFour = soundPool.load(context, R.raw.four, 1);
-        soundIDFive = soundPool.load(context, R.raw.five, 1);
-        soundIDSix = soundPool.load(context, R.raw.six, 1);
-        soundIDSeven = soundPool.load(context, R.raw.seven, 1);
-        soundIDEight = soundPool.load(context, R.raw.eight, 1);
-        soundIDNine = soundPool.load(context, R.raw.nine, 1);
-        soundIDPound = soundPool.load(context, R.raw.pound, 1);
-        soundIDStar = soundPool.load(context, R.raw.star, 1);
+        soundIDZero = soundPool.load(Util.getDirForVoice(context, "mamacita_us/zero.mp3").toString(), 1);
+        soundIDOne = soundPool.load(Util.getDirForVoice(context, "mamacita_us/one.mp3").toString(), 1);
+        soundIDTwo = soundPool.load(Util.getDirForVoice(context, "mamacita_us/two.mp3").toString(), 1);
+        soundIDThree = soundPool.load(Util.getDirForVoice(context, "mamacita_us/three.mp3").toString(), 1);
+        soundIDFour = soundPool.load(Util.getDirForVoice(context, "mamacita_us/four.mp3").toString(), 1);
+        soundIDFive = soundPool.load(Util.getDirForVoice(context, "mamacita_us/five.mp3").toString(), 1);
+        soundIDSix = soundPool.load(Util.getDirForVoice(context, "mamacita_us/six.mp3").toString(), 1);
+        soundIDSeven = soundPool.load(Util.getDirForVoice(context, "mamacita_us/seven.mp3").toString(), 1);
+        soundIDEight = soundPool.load(Util.getDirForVoice(context, "mamacita_us/eight.mp3").toString(), 1);
+        soundIDNine = soundPool.load(Util.getDirForVoice(context, "mamacita_us/nine.mp3").toString(), 1);
+        soundIDPound = soundPool.load(Util.getDirForVoice(context, "mamacita_us/pound.mp3").toString(), 1);
+        soundIDStar = soundPool.load(Util.getDirForVoice(context, "mamacita_us/star.mp3").toString(), 1);
         soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
     }
     public void destroy(){
