@@ -24,14 +24,16 @@
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="store_numbers_title">Store numbers</string>
+    <string name="store_numbers_summary_on">Dialed telephone numbers are stored so they at can be viewed later</string>
+    <string name="store_numbers_summary_off">Dialed telephone numbers are not stored</string>
+    <string name="delete_numbers_title">Delete numbers</string>
+    <string name="delete_numbers_summary">Delete stored telephone numbers from storage</string>
     <!-- About Dialog -->
     <string name="about_title">About</string>
     <string name="about_ok_button">OK</string>
     <string name="about_toast_message">You have already read the About-Dialog</string>
+    <!-- Menu Items -->
+    <string name="settings_title">Settings</string>
 </resources>

@@ -1,35 +1,21 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory>
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:key="store_numbers"
+            app:title="@string/store_numbers_title"
+            app:summaryOn="@string/store_numbers_summary_on"
+            app:summaryOff="@string/store_numbers_summary_off"
+            app:useSimpleSummaryProvider="true"
+            android:icon="@drawable/ic_baseline_save_24" />
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+        <Preference
+            app:title="@string/delete_numbers_title"
+            app:summary="@string/delete_numbers_summary"
+            android:icon="@drawable/ic_baseline_delete_forever_24"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>

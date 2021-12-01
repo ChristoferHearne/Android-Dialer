@@ -7,6 +7,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import se.miun.chhe1903.dt031g.dialer.Util;
@@ -80,6 +83,21 @@ public class MainActivity extends AppCompatActivity {
        super.onRestoreInstanceState(savedInstanceState);
        savedInstanceState.getBoolean("AboutOpened");
    }
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dial_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.settings_item:
+                startActivity(new Intent(this, SettingsActivity.class));
+        }
+        return(super.onOptionsItemSelected(item));
+    }
    private void importSoundFiles(){
         if (!Util.defaultVoiceExist(this)){
             Util.copyDefaultVoiceToInternalStorage(this);
