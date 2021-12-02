@@ -16,6 +16,7 @@ public class DialPadButton extends ConstraintLayout {
     // Instance variables
     private TextView titleText;
     private TextView messageText;
+    private TextView numberInput; 
     private SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
 
     // Constructor with context and AttributeSet
@@ -30,6 +31,13 @@ public class DialPadButton extends ConstraintLayout {
         this.setMessage(message.toString());
         this.setTitle(title.toString());
         addOnTouch();
+        this.setCustomOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(DialPadButton dialPadButton) {
+            numberInput = (TextView) getViewById(R.id.number_input);
+            numberInput.setText(dialPadButton.getTitle());
+            }
+        });
     }
     // Constructor with context only
     public DialPadButton(Context context){
@@ -42,6 +50,19 @@ public class DialPadButton extends ConstraintLayout {
         initDialLayout(context);
     }
 
+    // Onclick listener interface
+    public interface OnClickListener{
+        void onClick(DialPadButton dialPadButton);
+    }
+    // Variable for holding the listener
+    private OnClickListener listener;
+
+    // Listener setter
+    public void setCustomOnClickListener(OnClickListener listener){
+        this.listener = listener;
+    }
+
+    // Methods
     private void addOnTouch(){ // Adds fading animation to button when user interacts with it
         this.setOnTouchListener((view, event) -> {
             switch (event.getAction()) {
@@ -64,6 +85,7 @@ public class DialPadButton extends ConstraintLayout {
             return false;
         });
     }
+
 
     private void initDialLayout(Context context){ // Inflates the view
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -26,7 +26,6 @@
                 android:layout_width="340dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="123-545-666"
                 android:textAlignment="center"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="45dp"></TextView>
