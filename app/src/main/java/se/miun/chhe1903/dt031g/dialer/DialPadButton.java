@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class DialPadButton extends ConstraintLayout {
             @Override
             public void onClick(DialPadButton dialPadButton) {
             numberInput = (TextView) getViewById(R.id.number_input);
-            numberInput.setText(dialPadButton.getTitle());
+            numberInput.append(dialPadButton.getTitle());
             }
         });
     }

@@ -35,9 +35,8 @@ public class DialActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.settings_item:
-                startActivity(new Intent(this, SettingsActivity.class));
+        if (item.getItemId() == R.id.settings_item) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
         return(super.onOptionsItemSelected(item));
     }
