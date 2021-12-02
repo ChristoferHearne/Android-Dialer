@@ -6,6 +6,10 @@
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_shape.xml" value="0.4348958333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_shape_clicked.xml" value="0.25" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/button_state_transition.xml" value="0.5703125" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_baseline_backspace_24.xml" value="0.5615384615384615" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.5615384615384615" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.5615384615384615" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.5615384615384615" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4348958333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/activity_dial.xml" value="0.22" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/activity_main.xml" value="0.33" />
@@ -17,7 +21,7 @@
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_maps.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/button_shape.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/custom_dialog.xml" value="0.20572916666666666" />
-        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/dial_pad.xml" value="0.25" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/dial_pad.xml" value="0.33" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/dial_pad_button.xml" value="0.22" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/settings_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/shape.xml" value="0.3880208333333333" />
