@@ -32,13 +32,6 @@ public class DialPadButton extends ConstraintLayout {
         this.setMessage(message.toString());
         this.setTitle(title.toString());
         addOnTouch();
-        this.setCustomOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(DialPadButton dialPadButton) {
-            numberInput = (TextView) getViewById(R.id.number_input);
-            numberInput.append(dialPadButton.getTitle());
-            }
-        });
     }
     // Constructor with context only
     public DialPadButton(Context context){
@@ -80,6 +73,9 @@ public class DialPadButton extends ConstraintLayout {
                     // Reverses the transition to animate back to original state
                     TransitionDrawable transition = (TransitionDrawable) view.getBackground();
                     transition.reverseTransition(100);
+                    if (listener != null){
+                        listener.onClick(this);
+                    }
                     break;
                 }
             }

@@ -6,13 +6,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import se.miun.chhe1903.dt031g.dialer.Util;
 
 
 public class MainActivity extends AppCompatActivity {
