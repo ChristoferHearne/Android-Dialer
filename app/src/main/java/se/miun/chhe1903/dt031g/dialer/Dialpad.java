@@ -1,11 +1,13 @@
 package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
+import se.miun.chhe1903.dt031g.dialer.SettingsActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -44,7 +46,15 @@ public class Dialpad extends ConstraintLayout {
     }
     private void addOnListenerCallButton(Context context){
         callButton = findViewById(R.id.call_button);
-        callButton.setOnClickListener(view -> goToActionDial(context));
+        SharedPreferences pref = context.getApplicationContext().getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", Context.MODE_PRIVATE);
+        Editor editor = pref.edit();
+        callButton.setOnClickListener(view -> {
+            if (SettingsActivity.shouldStoreNumbers(context)){
+                editor.putString("store_numbers_" + numberInput.getText().toString(), numberInput.getText().toString());
+                editor.commit();
+            }
+            goToActionDial(context);
+        });
     }
     private void addNumberToInput(DialPadButton dialPadButton){
         numberInput = findViewById(R.id.number_input);

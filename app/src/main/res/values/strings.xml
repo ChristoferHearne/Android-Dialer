@@ -36,4 +36,5 @@
     <string name="about_toast_message">You have already read the About-Dialog</string>
     <!-- Menu Items -->
     <string name="settings_title">Settings</string>
+    <string name="delete_item_title">Delete stored numbers</string>
 </resources>

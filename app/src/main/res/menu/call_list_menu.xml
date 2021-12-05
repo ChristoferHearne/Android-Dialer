@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/call_list_toolbar">
+    <item android:id="@+id/delete_item"
+        android:title="@string/delete_item_title"/>
+</menu>

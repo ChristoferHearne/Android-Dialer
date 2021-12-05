@@ -10,11 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/call_list_activity_message"
-        android:text="@string/call_list_activity_message"
+        android:text="Your stored numbers: \n"
         android:textColorHint="@color/primaryDarkColor"
         android:textColor="@color/primaryDarkColor"
-        android:textSize="17sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
