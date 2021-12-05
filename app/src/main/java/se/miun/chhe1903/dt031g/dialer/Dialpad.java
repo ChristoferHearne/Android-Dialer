@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public class Dialpad extends ConstraintLayout {
     }
     private void addOnListenerCallButton(Context context){
         callButton = findViewById(R.id.call_button);
-        SharedPreferences pref = context.getApplicationContext().getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
         Editor editor = pref.edit();
         callButton.setOnClickListener(view -> {
             if (SettingsActivity.shouldStoreNumbers(context)){

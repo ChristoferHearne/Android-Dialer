@@ -3,6 +3,7 @@ package se.miun.chhe1903.dt031g.dialer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -28,7 +29,7 @@ public class CallListActivity extends AppCompatActivity {
     private void addStoredNumbersToTextView(){
         TextView textView = findViewById(R.id.callListTextView);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        SharedPreferences prefs = getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Map<String, ?> keys = prefs.getAll();
         if (keys.size() == 1){
             textView.setText("You have no stored numbers yet");
@@ -52,7 +53,7 @@ public class CallListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         TextView textView = findViewById(R.id.callListTextView);
         if (item.getItemId() == R.id.action_delete_stored) {
-            SharedPreferences prefs = getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", MODE_PRIVATE);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             Map<String, ?> keys = prefs.getAll();
             Editor editor = prefs.edit();
             for (Map.Entry<String, ?> entry: keys.entrySet()){
