@@ -28,15 +28,17 @@ public class CallListActivity extends AppCompatActivity {
     private void addStoredNumbersToTextView(){
         TextView textView = findViewById(R.id.callListTextView);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        SharedPreferences prefs = getSharedPreferences("StoredNumbers", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", MODE_PRIVATE);
         Map<String, ?> keys = prefs.getAll();
-        if (keys.size() == 0){
+        if (keys.size() == 1){
             textView.setText("You have no stored numbers yet");
         }
         else{
             textView.setText("Your stored numbers: \n");
             for (Map.Entry<String, ?> entry: keys.entrySet()){
-                textView.append(entry.getValue().toString() + "\n");
+                if (entry.getKey().contains("store_number_")){
+                    textView.append(entry.getValue().toString() + "\n");
+                }
             }
         }
     }
@@ -50,12 +52,14 @@ public class CallListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         TextView textView = findViewById(R.id.callListTextView);
         if (item.getItemId() == R.id.action_delete_stored) {
-            SharedPreferences prefs = getSharedPreferences("StoredNumbers", MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", MODE_PRIVATE);
             Map<String, ?> keys = prefs.getAll();
             Editor editor = prefs.edit();
             for (Map.Entry<String, ?> entry: keys.entrySet()){
-                editor.clear();
-                editor.commit();
+                if (entry.getKey().contains("store_number_")){
+                    editor.remove(entry.getKey());
+                    editor.commit();
+                }
                 textView.setText("You have no stored numbers yet");
             }
         }

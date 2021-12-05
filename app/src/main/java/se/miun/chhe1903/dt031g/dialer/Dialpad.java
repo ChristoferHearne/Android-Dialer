@@ -46,11 +46,11 @@ public class Dialpad extends ConstraintLayout {
     }
     private void addOnListenerCallButton(Context context){
         callButton = findViewById(R.id.call_button);
-        SharedPreferences pref = context.getApplicationContext().getSharedPreferences("StoredNumbers", Context.MODE_PRIVATE);
+        SharedPreferences pref = context.getApplicationContext().getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", Context.MODE_PRIVATE);
         Editor editor = pref.edit();
         callButton.setOnClickListener(view -> {
             if (SettingsActivity.shouldStoreNumbers(context)){
-                editor.putString("store_numbers_" + numberInput.getText().toString(), numberInput.getText().toString()); // I put the stored number as key to make sure we get a unique ID
+                editor.putString("store_number_" + numberInput.getText().toString(), numberInput.getText().toString()); // I put the stored number as key to make sure it has unique ID
                 editor.commit();
             }
             goToActionDial(context);

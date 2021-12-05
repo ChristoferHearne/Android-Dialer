@@ -3,10 +3,6 @@ package se.miun.chhe1903.dt031g.dialer;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
         public boolean onPreferenceTreeClick(Preference preference) {
             String key = preference.getKey();
             if(key.equals("delete_numbers")){
-                // This actually notices the click but cant delete since it has to be static?
+                deleteNumbers(getContext().getApplicationContext());
             }
             return super.onPreferenceTreeClick(preference);
         }
@@ -55,5 +51,19 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getBoolean("store_numbers", true);
     }
+
+    public static boolean deleteNumbers(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Map<String, ?> keys = sharedPreferences.getAll();
+        for (Map.Entry<String, ?> entry: keys.entrySet()){
+            if (entry.getKey().contains("store_number_")){
+                editor.remove(entry.getKey());
+                editor.commit();
+            }
+        }
+        return true;
+    }
+
 
 }
