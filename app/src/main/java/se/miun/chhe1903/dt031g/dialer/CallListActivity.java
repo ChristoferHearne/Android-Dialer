@@ -1,14 +1,18 @@
 package se.miun.chhe1903.dt031g.dialer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Map;
@@ -22,11 +26,16 @@ public class CallListActivity extends AppCompatActivity {
         addStoredNumbersToTextView();
     }
     private void addStoredNumbersToTextView(){
-        TextView textView = (TextView) findViewById(R.id.callListTextView);
-        SharedPreferences prefs = getSharedPreferences("se.miun.chhe1903.dt031g.dialer_preferences", MODE_PRIVATE);
+        TextView textView = findViewById(R.id.callListTextView);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+        SharedPreferences prefs = getSharedPreferences("StoredNumbers", MODE_PRIVATE);
         Map<String, ?> keys = prefs.getAll();
-        for (Map.Entry<String, ?> entry: keys.entrySet()){
-            if (entry.getKey().contains("store_numbers_")){
+        if (keys.size() == 0){
+            textView.setText("You have no stored numbers yet");
+        }
+        else{
+            textView.setText("Your stored numbers: \n");
+            for (Map.Entry<String, ?> entry: keys.entrySet()){
                 textView.append(entry.getValue().toString() + "\n");
             }
         }
@@ -34,9 +43,22 @@ public class CallListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_baseline_delete_forever_24);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.call_list_toolbar);
-        toolbar.setOverflowIcon(drawable);
+        inflater.inflate(R.menu.call_list_menu, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        TextView textView = findViewById(R.id.callListTextView);
+        if (item.getItemId() == R.id.action_delete_stored) {
+            SharedPreferences prefs = getSharedPreferences("StoredNumbers", MODE_PRIVATE);
+            Map<String, ?> keys = prefs.getAll();
+            Editor editor = prefs.edit();
+            for (Map.Entry<String, ?> entry: keys.entrySet()){
+                editor.clear();
+                editor.commit();
+                textView.setText("You have no stored numbers yet");
+            }
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

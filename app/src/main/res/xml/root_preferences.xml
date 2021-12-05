@@ -12,9 +12,10 @@
             android:icon="@drawable/ic_baseline_save_24" />
 
         <Preference
+            app:key="delete_numbers"
             app:title="@string/delete_numbers_title"
             app:summary="@string/delete_numbers_summary"
-            android:icon="@drawable/ic_baseline_delete_forever_24"
+            android:icon="@drawable/ic_baseline_delete_forever_24_black"
             />
     </PreferenceCategory>
 
