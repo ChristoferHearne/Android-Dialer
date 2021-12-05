@@ -1,9 +1,12 @@
 package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
@@ -13,7 +16,7 @@ import androidx.preference.PreferenceManager;
 import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
-    // Auto-create stub from wizard
+    // Instance variables
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         return sharedPreferences.getBoolean("store_numbers", true);
     }
 
-    public static boolean deleteNumbers(Context context){
+    public static void deleteNumbers(Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Map<String, ?> keys = sharedPreferences.getAll();
@@ -62,8 +65,17 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.commit();
             }
         }
-        return true;
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            String caller = getIntent().getStringExtra("caller");
+            if (caller != null && caller.equals("DialActivity")){
+                startActivity(new Intent(this, DialActivity.class));
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

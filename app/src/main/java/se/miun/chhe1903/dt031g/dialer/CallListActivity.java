@@ -2,19 +2,17 @@ package se.miun.chhe1903.dt031g.dialer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
+import se.miun.chhe1903.dt031g.dialer.SettingsActivity;
 
 import java.util.Map;
 
@@ -53,16 +51,8 @@ public class CallListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         TextView textView = findViewById(R.id.callListTextView);
         if (item.getItemId() == R.id.action_delete_stored) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            Map<String, ?> keys = prefs.getAll();
-            Editor editor = prefs.edit();
-            for (Map.Entry<String, ?> entry: keys.entrySet()){
-                if (entry.getKey().contains("store_number_")){
-                    editor.remove(entry.getKey());
-                    editor.commit();
-                }
-                textView.setText("You have no stored numbers yet");
-            }
+            SettingsActivity.deleteNumbers(getApplicationContext());
+            textView.setText("You have no stored numbers yet");
         }
         return(super.onOptionsItemSelected(item));
     }
