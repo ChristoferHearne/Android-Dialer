@@ -1,18 +1,11 @@
 package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
-import se.miun.chhe1903.dt031g.dialer.SettingsActivity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +21,6 @@ public class Dialpad extends ConstraintLayout {
         super(context, attrs);
         initDialPadLayout(context);
         addOnClickListeners();
-        addOnListenerCallButton(context);
     }
     private void initDialPadLayout(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -45,18 +37,7 @@ public class Dialpad extends ConstraintLayout {
         backspaceButton.setOnClickListener(textView -> numberInput.setText(deleteLastEntry(numberInput)));
 
     }
-    private void addOnListenerCallButton(Context context){
-        callButton = findViewById(R.id.call_button);
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        Editor editor = pref.edit();
-        callButton.setOnClickListener(view -> {
-            if (SettingsActivity.shouldStoreNumbers(context)){
-                editor.putString("store_number_" + numberInput.getText().toString(), numberInput.getText().toString()); // I put the stored number as key to make sure it has unique ID
-                editor.commit();
-            }
-            goToActionDial(context);
-        });
-    }
+
     private void addNumberToInput(DialPadButton dialPadButton){
         numberInput = findViewById(R.id.number_input);
         numberInput.append(dialPadButton.getTitle());
@@ -69,8 +50,5 @@ public class Dialpad extends ConstraintLayout {
             return input.getText().toString().substring(0, input.getText().length() - 1);
         }
     }
-    private void goToActionDial(Context context){
-        Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(numberInput.getText().toString().replace("\uFF0A", "*"))));
-        context.startActivity(callIntent);
-    }
+
 }

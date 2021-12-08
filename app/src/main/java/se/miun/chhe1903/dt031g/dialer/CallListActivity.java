@@ -29,7 +29,7 @@ public class CallListActivity extends AppCompatActivity {
         textView.setMovementMethod(new ScrollingMovementMethod());
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Map<String, ?> keys = prefs.getAll();
-        if (keys.size() == 1){
+        if (keys.size() == 1 || keys.size() == 0){
             textView.setText("You have no stored numbers yet");
         }
         else{
