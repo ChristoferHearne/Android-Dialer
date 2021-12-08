@@ -88,13 +88,22 @@
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout android:layout_gravity="center">
+            <FrameLayout>
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/button_about"
                     android:onClick="showAboutDialog"
                     android:text="@string/button_about" />
+            </FrameLayout>
+            <FrameLayout>
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/button_download_voices"
+                    android:onClick="goToDownloadVoices"
+                    android:text="@string/button_download_voices" />
             </FrameLayout>
         </TableRow>
     </TableLayout>

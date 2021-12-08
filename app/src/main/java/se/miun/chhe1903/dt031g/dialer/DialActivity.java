@@ -121,6 +121,9 @@ public class DialActivity extends AppCompatActivity {
             intent.putExtra("caller", "DialActivity");
             startActivity(intent);
         }
+        else if(item.getItemId() == R.id.download_voices_item){
+            startActivity(new Intent(this, DownloadActivity.class));
+        }
         return(super.onOptionsItemSelected(item));
     }
 }

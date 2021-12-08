@@ -41,6 +41,14 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:hint="@string/button_download_voices"
+            android:onClick="goToDownloadVoices"
+            android:text="@string/button_download_voices" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="@string/button_call_list"
             android:onClick="goToCallList"
             android:text="@string/button_call_list" />

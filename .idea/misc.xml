@@ -17,17 +17,22 @@
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout-land/dial_pad_button.xml" value="0.2808641975308642" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_call_list.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_dial.xml" value="0.25" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_download.xml" value="0.22" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/activity_maps.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/button_shape.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/content_download.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/custom_dialog.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/dial_pad.xml" value="0.33" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/dial_pad_button.xml" value="0.22" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/download_acitivity.xml" value="0.3338541666666667" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/download_activity.xml" value="0.3338541666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/settings_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/layout/shape.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/menu/call_list_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/menu/dial_list_menu.xml" value="0.3328125" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/menu/dial_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/menu/main_menu.xml" value="0.3338541666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.221875" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.221875" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Dialer2/app/src/main/res/xml/root_preferences.xml" value="0.3328125" />

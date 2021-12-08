@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         Intent dialIntent = new Intent(this, DialActivity.class);
         startActivity(dialIntent);
     }
+    public void goToDownloadVoices(View view){ // When a user clicks the Download Voices button
+        // Navigates to the Download WebView
+        Intent downloadIntent = new Intent(this, DownloadActivity.class);
+        startActivity(downloadIntent);
+    }
     public void goToCallList(View view){ // When a user clicks the Call List-button
         // Navigates to the Call List-view
         Intent callListIntent = new Intent(this, CallListActivity.class);
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.dial_menu, menu);
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
