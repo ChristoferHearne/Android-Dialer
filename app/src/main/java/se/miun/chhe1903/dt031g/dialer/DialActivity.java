@@ -50,6 +50,9 @@ public class DialActivity extends AppCompatActivity {
             }
             else{
                 requestCallPermission();
+                if (permissionGranted){
+                    performCallOperation(context);
+                }
             }
         });
     }
