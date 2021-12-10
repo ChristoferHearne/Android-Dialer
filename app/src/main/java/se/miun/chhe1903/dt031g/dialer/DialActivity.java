@@ -101,6 +101,12 @@ public class DialActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SoundPlayer.getInstance(this).destroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dial_menu, menu);

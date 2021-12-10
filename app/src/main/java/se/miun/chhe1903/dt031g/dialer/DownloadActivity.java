@@ -3,6 +3,7 @@ package se.miun.chhe1903.dt031g.dialer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,6 +74,8 @@ public class DownloadActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             downloadProgressBar = findViewById(R.id.download_voice_file_progress);
+            downloadProgressBar.getProgressDrawable().setColorFilter(
+                    Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
             progressBarViewGroup = findViewById(R.id.voice_file_download);
             downloadTitle = findViewById(R.id.download_voice_title);
             downloadTitle.setText(getResources().getString(R.string.download_voice_title) + " " + fileName);
