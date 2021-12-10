@@ -9,10 +9,14 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
 import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -37,6 +41,11 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            ListPreference voicePref = findPreference("select_voices");
+            File directoryPath = new File(Util.getInternalStorageDir(getContext()) + "/voices");
+            String[] voiceFilesAvailable = directoryPath.list((current, name) -> new File(current, name).isDirectory());
+            voicePref.setEntries(voiceFilesAvailable);
+            voicePref.setEntryValues(voiceFilesAvailable);
         }
 
         @Override

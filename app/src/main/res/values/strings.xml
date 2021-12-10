@@ -34,6 +34,7 @@
     <string name="store_numbers_summary_off">Dialed telephone numbers are not stored</string>
     <string name="delete_numbers_title">Delete numbers</string>
     <string name="delete_numbers_summary">Delete stored telephone numbers from storage</string>
+    <string name="select_voices_title">Voice</string>
     <!-- About Dialog -->
     <string name="about_title">About</string>
     <string name="about_ok_button">OK</string>

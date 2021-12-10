@@ -17,6 +17,12 @@
             app:summary="@string/delete_numbers_summary"
             android:icon="@drawable/ic_baseline_delete_forever_24_black"
             />
+        <ListPreference
+            app:key="select_voices"
+            app:title="@string/select_voices_title"
+            android:icon="@drawable/ic_baseline_record_voice_over_24"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="mamacita_us"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

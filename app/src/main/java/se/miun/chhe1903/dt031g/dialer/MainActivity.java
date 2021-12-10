@@ -2,6 +2,8 @@ package se.miun.chhe1903.dt031g.dialer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goToSettings(View view){ // When a user clicks the Settings-button
         // Navigates to the Settings-view
+        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, true);
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
    }
