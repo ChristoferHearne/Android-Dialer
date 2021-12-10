@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,6 @@ import androidx.preference.PreferenceManager;
 
 import java.io.File;
 import java.util.Map;
-import java.util.prefs.PreferenceChangeListener;
 
 public class SettingsActivity extends AppCompatActivity {
     // Instance variables
@@ -46,10 +44,6 @@ public class SettingsActivity extends AppCompatActivity {
             String[] voiceFilesAvailable = directoryPath.list((current, name) -> new File(current, name).isDirectory());
             voicePref.setEntries(voiceFilesAvailable);
             voicePref.setEntryValues(voiceFilesAvailable);
-            voicePref.setOnPreferenceChangeListener((preference, newValue) -> {
-                SoundPlayer.selectedVoice = newValue.toString();
-                return true;
-            });
         }
 
         @Override
@@ -80,6 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

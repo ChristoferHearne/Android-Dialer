@@ -1,15 +1,20 @@
 package se.miun.chhe1903.dt031g.dialer;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.SoundPool;
+
+import androidx.preference.PreferenceManager;
+
+import java.util.Map;
+
 import se.miun.chhe1903.dt031g.dialer.Util;
 
 
 public class SoundPlayer {
     // Instance variables
     private static SoundPlayer INSTANCE = null;
-    private String defaultVoice;
-    public static String selectedVoice = "mamacita_us";
+    private String selectedVoice;
     private SoundPool soundPool;
     private int soundIDZero, soundIDOne, soundIDTwo, soundIDThree, soundIDFour, soundIDFive, soundIDSix, soundIDSeven,
     soundIDEight, soundIDNine, soundIDPound, soundIDStar;
@@ -70,9 +75,12 @@ public class SoundPlayer {
         }
     }
     private void initSoundPool(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        selectedVoice = prefs.getString("select_voices", "mamacita_us");
         soundPool = new SoundPool.Builder()
                 .setMaxStreams(1)
                 .build();
+
         soundIDZero = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/zero.mp3").toString(), 1);
         soundIDOne = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/one.mp3").toString(), 1);
         soundIDTwo = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/two.mp3").toString(), 1);

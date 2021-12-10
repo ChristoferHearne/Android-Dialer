@@ -101,16 +101,6 @@ public class DialActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause()
-    {
-        super.onPause();
-        if(isFinishing())
-        {
-            SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getApplicationContext());
-            soundPlayer.destroy(); // I think this just creates a new instance of soundPlayer and then deletes it. Cant figure out how to destroy in the onclick without getting instance problems on first click.
-        }
-    }
-    @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dial_menu, menu);
@@ -122,6 +112,7 @@ public class DialActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.settings_item) {
             Intent intent = new Intent(this, SettingsActivity.class);
             intent.putExtra("caller", "DialActivity");
+            SoundPlayer.getInstance(getApplicationContext()).destroy();
             startActivity(intent);
         }
         else if(item.getItemId() == R.id.download_voices_item){
