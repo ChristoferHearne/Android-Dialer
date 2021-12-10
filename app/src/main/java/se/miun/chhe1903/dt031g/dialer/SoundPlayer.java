@@ -8,6 +8,8 @@ import se.miun.chhe1903.dt031g.dialer.Util;
 public class SoundPlayer {
     // Instance variables
     private static SoundPlayer INSTANCE = null;
+    private String defaultVoice;
+    public static String selectedVoice = "mamacita_us";
     private SoundPool soundPool;
     private int soundIDZero, soundIDOne, soundIDTwo, soundIDThree, soundIDFour, soundIDFive, soundIDSix, soundIDSeven,
     soundIDEight, soundIDNine, soundIDPound, soundIDStar;
@@ -71,18 +73,18 @@ public class SoundPlayer {
         soundPool = new SoundPool.Builder()
                 .setMaxStreams(1)
                 .build();
-        soundIDZero = soundPool.load(Util.getDirForVoice(context, "mamacita_us/zero.mp3").toString(), 1);
-        soundIDOne = soundPool.load(Util.getDirForVoice(context, "mamacita_us/one.mp3").toString(), 1);
-        soundIDTwo = soundPool.load(Util.getDirForVoice(context, "mamacita_us/two.mp3").toString(), 1);
-        soundIDThree = soundPool.load(Util.getDirForVoice(context, "mamacita_us/three.mp3").toString(), 1);
-        soundIDFour = soundPool.load(Util.getDirForVoice(context, "mamacita_us/four.mp3").toString(), 1);
-        soundIDFive = soundPool.load(Util.getDirForVoice(context, "mamacita_us/five.mp3").toString(), 1);
-        soundIDSix = soundPool.load(Util.getDirForVoice(context, "mamacita_us/six.mp3").toString(), 1);
-        soundIDSeven = soundPool.load(Util.getDirForVoice(context, "mamacita_us/seven.mp3").toString(), 1);
-        soundIDEight = soundPool.load(Util.getDirForVoice(context, "mamacita_us/eight.mp3").toString(), 1);
-        soundIDNine = soundPool.load(Util.getDirForVoice(context, "mamacita_us/nine.mp3").toString(), 1);
-        soundIDPound = soundPool.load(Util.getDirForVoice(context, "mamacita_us/pound.mp3").toString(), 1);
-        soundIDStar = soundPool.load(Util.getDirForVoice(context, "mamacita_us/star.mp3").toString(), 1);
+        soundIDZero = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/zero.mp3").toString(), 1);
+        soundIDOne = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/one.mp3").toString(), 1);
+        soundIDTwo = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/two.mp3").toString(), 1);
+        soundIDThree = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/three.mp3").toString(), 1);
+        soundIDFour = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/four.mp3").toString(), 1);
+        soundIDFive = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/five.mp3").toString(), 1);
+        soundIDSix = soundPool.load(Util.getDirForVoice(context,  selectedVoice + "/six.mp3").toString(), 1);
+        soundIDSeven = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/seven.mp3").toString(), 1);
+        soundIDEight = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/eight.mp3").toString(), 1);
+        soundIDNine = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/nine.mp3").toString(), 1);
+        soundIDPound = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/pound.mp3").toString(), 1);
+        soundIDStar = soundPool.load(Util.getDirForVoice(context, selectedVoice + "/star.mp3").toString(), 1);
         soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> soundIsLoaded = true);
     }
     public void destroy(){
