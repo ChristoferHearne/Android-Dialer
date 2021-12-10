@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -63,7 +64,7 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     // AsyncTask
-    private class DownloadASyncTask extends AsyncTask<String, String, String>{
+    private class DownloadASyncTask extends AsyncTask<String, Integer, String>{
         private ProgressBar downloadProgressBar;
         private ViewGroup progressBarViewGroup;
         private TextView downloadTitle;
@@ -82,15 +83,23 @@ public class DownloadActivity extends AppCompatActivity {
         protected String doInBackground(String... _url) {
             try {
                 URL url = new URL(_url[0]);
-
                 URLConnection connection = url.openConnection();
                 connection.connect();
                 InputStream response = connection.getInputStream();
-                File voiceFile =  new File(fileName);
-                copyInputStreamToFile(response, voiceFile);
-                Util.unzip(voiceFile, Util.getDirForVoice(getApplicationContext(), fileName.substring(0, fileName.lastIndexOf("."))));
-
-
+                File voiceFile =  new File(Util.getInternalStorageDir(getApplicationContext()), fileName);
+                try (FileOutputStream outputStream = new FileOutputStream(voiceFile, false)) {
+                    int read;
+                    long total = 0;
+                    byte[] bytes = new byte[8192];
+                    while ((read = response.read(bytes)) != -1) {
+                        total += read;
+                        publishProgress((int) total * 100 / connection.getContentLength());
+                        Thread.sleep(200); // I suspend the thread for 200ms to actually show the progressbar
+                        outputStream.write(bytes, 0, read);
+                    }
+                }
+                String path = Util.getInternalStorageDir(getApplicationContext()) + "/voices";
+                Util.unzip(voiceFile, new File(path));
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
             }
@@ -99,8 +108,14 @@ public class DownloadActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onProgressUpdate(Integer... values) {
+            downloadProgressBar.setProgress(values[0]);
+        }
+
+        @Override
         protected void onPostExecute(String s) {
             animateVisibility(progressBarViewGroup, View.GONE);
+            Toast.makeText(getApplicationContext(), fileName + " was downloaded", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -113,18 +128,5 @@ public class DownloadActivity extends AppCompatActivity {
 
         TransitionManager.beginDelayedTransition(parent, transition);
         view.setVisibility(visibility);
-    }
-    private static void copyInputStreamToFile(InputStream inputStream, File file)
-            throws IOException {
-
-        // append = false
-        try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
-            int read;
-            byte[] bytes = new byte[8192];
-            while ((read = inputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
-            }
-        }
-
     }
 }
