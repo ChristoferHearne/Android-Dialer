@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CallListActivity">
+    <android.support.v7.widget.RecyclerView>
+
+    </android.support.v7.widget.RecyclerView>
     <TextView
         android:id="@+id/callListTextView"
         android:scrollbars="vertical"
