@@ -23,7 +23,8 @@ import android.widget.Toast;
 
 
 public class DialActivity extends AppCompatActivity {
-    private final int CALL_PERMISSION_CODE = 1;
+    private final int MY_PERMISSIONS_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +35,10 @@ public class DialActivity extends AppCompatActivity {
     private void addOnClickListenerToCallButton(Context context){
         // GUI Element
         Button callButton = findViewById(R.id.call_button);
+        // Boolean for holding if permissions are granted
 
-        // Boolean storing if permission was granted
-        Boolean permissionGranted = ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
+        Boolean permissionsGranted = ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE) + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
 
         // GET shared preferences
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -44,13 +46,12 @@ public class DialActivity extends AppCompatActivity {
 
         // Set on click for the callButton
         callButton.setOnClickListener(view -> {
-            if (permissionGranted){
+            if (permissionsGranted){
                 Toast.makeText(DialActivity.this, "You have already granted the permission to call", Toast.LENGTH_SHORT);
                 performCallOperation(context);
             }
             else{
-                requestCallPermission();
-                if (permissionGranted){
+                if (requestPermissions()){
                     performCallOperation(context);
                 }
             }
@@ -72,31 +73,62 @@ public class DialActivity extends AppCompatActivity {
     }
 
 
-    private void requestCallPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)){
-            new AlertDialog.Builder(this)
-                    .setTitle("Permission Needed")
-                    .setMessage("This permission is needed to make sure you can make a call from this app")
-                    .setPositiveButton("Ok", (dialog, which) -> ActivityCompat.requestPermissions(DialActivity.this, new String[]{Manifest.permission.CALL_PHONE}, CALL_PERMISSION_CODE))
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .create().show();
-
-        } else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, CALL_PERMISSION_CODE);
+    private boolean requestPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+        + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
+                new AlertDialog.Builder(this)
+                        .setTitle("Permission Needed")
+                        .setMessage("Access fine location, Access coarse location and Call permissions are required to do this task")
+                        .setPositiveButton("Ok", (dialog, which) -> {
+                            ActivityCompat.requestPermissions(
+                                    this,
+                                    new String[]{
+                                            Manifest.permission.CALL_PHONE,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                                            Manifest.permission.ACCESS_FINE_LOCATION
+                                    }, MY_PERMISSIONS_CODE
+                            );
+                        })
+                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                        .create().show();
+            }
+            else{
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[]{
+                                Manifest.permission.CALL_PHONE,
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_FINE_LOCATION
+                        },
+                        MY_PERMISSIONS_CODE
+                );
+                if (ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE) + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
+                    return true;
+                }
+            }
         }
+        else{
+            Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT);
+            return true;
+        }
+        return false;
     }
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CALL_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
-                performCallOperation(this);
-            } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
-            }
+        switch (requestCode) {
+            case MY_PERMISSIONS_CODE:
+                if (grantResults.length > 0 && (grantResults[0] + grantResults[1] + grantResults[2] == PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT);
+                } else {
+                    Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT);
+                }
         }
     }
 
