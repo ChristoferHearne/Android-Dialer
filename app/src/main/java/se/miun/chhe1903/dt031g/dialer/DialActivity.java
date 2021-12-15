@@ -37,8 +37,6 @@ public class DialActivity extends AppCompatActivity {
         Button callButton = findViewById(R.id.call_button);
         // Boolean for holding if permissions are granted
 
-        Boolean permissionsGranted = ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE) + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
 
         // GET shared preferences
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -46,14 +44,13 @@ public class DialActivity extends AppCompatActivity {
 
         // Set on click for the callButton
         callButton.setOnClickListener(view -> {
-            if (permissionsGranted){
+            Boolean callPermissionGranted = ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE)  == PackageManager.PERMISSION_GRANTED;
+            if (callPermissionGranted){
                 Toast.makeText(DialActivity.this, "You have already granted the permission to call", Toast.LENGTH_SHORT);
                 performCallOperation(context);
             }
             else{
-                if (requestPermissions()){
-                    performCallOperation(context);
-                }
+                requestPermissions();
             }
         });
     }
@@ -73,7 +70,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
 
-    private boolean requestPermissions() {
+    private void requestPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
         + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
@@ -81,7 +78,7 @@ public class DialActivity extends AppCompatActivity {
             || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
                 new AlertDialog.Builder(this)
                         .setTitle("Permission Needed")
-                        .setMessage("Access fine location, Access coarse location and Call permissions are required to do this task")
+                        .setMessage("A call permission is required to make this call. Location-permissions are solely optional and you don't have to allow location to make a call. Stored calls will not have location info if denied")
                         .setPositiveButton("Ok", (dialog, which) -> {
                             ActivityCompat.requestPermissions(
                                     this,
@@ -105,17 +102,11 @@ public class DialActivity extends AppCompatActivity {
                         },
                         MY_PERMISSIONS_CODE
                 );
-                if (ContextCompat.checkSelfPermission(DialActivity.this, Manifest.permission.CALL_PHONE) + ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        + ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
-                    return true;
-                }
             }
         }
         else{
             Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT);
-            return true;
         }
-        return false;
     }
 
 
