@@ -1,5 +1,6 @@
 package se.miun.chhe1903.dt031g.dialer;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,62 +9,60 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import se.miun.chhe1903.dt031g.dialer.data.Number;
+
 public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.ViewHolder> {
-    // Copy paste from Android docs, needs customization
-    private String[] localDataSet;
+    private List<Number> numbersData;
+    private LayoutInflater mInflater;
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
-
-        public ViewHolder(View view) {
-            super(view);
-            // Define click listener for the ViewHolder's View
-
-            textView = (TextView) view.findViewById(R.id.call_number);
-        }
-
-        public TextView getTextView() {
-            return textView;
-        }
+    // data is passed into the constructor
+    NumbersAdapter(Context context, List<Number> data) {
+        this.mInflater = LayoutInflater.from(context);
+        this.numbersData = data;
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public NumbersAdapter(String[] dataSet) {
-        localDataSet = dataSet;
-    }
-
-    // Create new views (invoked by the layout manager)
+    // inflates the row layout from xml when needed
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.recyclerview_row, viewGroup, false);
-
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
     }
 
-
-    // Replace the contents of a view (invoked by the layout manager)
+    // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        if (getItemCount() != 0){
+            Number storedCall = numbersData.get(position);
+            holder.numberTextView.setText(storedCall.getNumber());
+            holder.timeStampTextView.setText(storedCall.getTimestamp());
+            holder.locationTextView.setText("(" + String.valueOf(storedCall.getLatitude()) + ", " + String.valueOf(storedCall.getLongitude()) + ")");
+        }
+        else{
+            holder.noStoredNumbersTextView.setVisibility(View.VISIBLE);
+        }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // total number of rows
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return numbersData.size();
+    }
+
+
+    // stores and recycles views as they are scrolled off screen
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView numberTextView;
+        TextView timeStampTextView;
+        TextView locationTextView;
+        TextView noStoredNumbersTextView;
+        ViewHolder(View itemView) {
+            super(itemView);
+            numberTextView = itemView.findViewById(R.id.call_number);
+            timeStampTextView = itemView.findViewById(R.id.call_timestamp);
+            locationTextView = itemView.findViewById(R.id.call_location);
+            noStoredNumbersTextView = itemView.findViewById(R.id.no_stored_numbers_info);
+        }
     }
 }

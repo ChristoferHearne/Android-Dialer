@@ -3,6 +3,8 @@ package se.miun.chhe1903.dt031g.dialer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ public class CallListActivity extends AppCompatActivity {
     private List<Number> storedNumbers;
     private NumberDatabase db;
     private NumberDao numberDao;
+    private NumbersAdapter numbersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +34,14 @@ public class CallListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_call_list);
         db = NumberDatabase.getInstance(getApplicationContext());
         numberDao = db.numberDao();
-        addStoredNumbersToTextView();
+        updateRecyclerView();
     }
-    private void addStoredNumbersToTextView(){
-        TextView textView = findViewById(R.id.callListTextView);
-        textView.setMovementMethod(new ScrollingMovementMethod());
+    private void updateRecyclerView(){
         storedNumbers = numberDao.getAll();
-        for (Number storedNumber: storedNumbers){
-            textView.append(storedNumber.getNumber() + "");
-        }
+        RecyclerView recyclerView = findViewById(R.id.numbers_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        numbersAdapter = new NumbersAdapter(this, storedNumbers);
+        recyclerView.setAdapter(numbersAdapter);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -49,10 +51,9 @@ public class CallListActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        TextView textView = findViewById(R.id.callListTextView);
         if (item.getItemId() == R.id.action_delete_stored) {
             SettingsActivity.deleteNumbers(getApplicationContext());
-            textView.setText("You have no stored numbers yet");
+            updateRecyclerView();
         }
         return(super.onOptionsItemSelected(item));
     }
