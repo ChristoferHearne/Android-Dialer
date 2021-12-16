@@ -21,13 +21,6 @@
         android:id="@+id/call_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"/>
-    <TextView
-        android:id="@+id/no_stored_numbers_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/primaryDarkColor"
-        android:text="@string/stored_numbers_title">
-    </TextView>
+        android:textSize="12sp"
+        android:textColor="@color/primaryDarkColor"/>
 </LinearLayout>

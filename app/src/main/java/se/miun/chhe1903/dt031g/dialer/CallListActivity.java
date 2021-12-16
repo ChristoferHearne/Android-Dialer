@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ReceiverCallNotAllowedException;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -13,6 +14,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import se.miun.chhe1903.dt031g.dialer.SettingsActivity;
 import se.miun.chhe1903.dt031g.dialer.data.Number;
@@ -27,6 +29,7 @@ public class CallListActivity extends AppCompatActivity {
     private NumberDatabase db;
     private NumberDao numberDao;
     private NumbersAdapter numbersAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,20 @@ public class CallListActivity extends AppCompatActivity {
     }
     private void updateRecyclerView(){
         storedNumbers = numberDao.getAll();
-        RecyclerView recyclerView = findViewById(R.id.numbers_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        numbersAdapter = new NumbersAdapter(this, storedNumbers);
-        recyclerView.setAdapter(numbersAdapter);
+
+        if (storedNumbers.size() != 0){
+            recyclerView = findViewById(R.id.numbers_rv);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            numbersAdapter = new NumbersAdapter(this, storedNumbers);
+            recyclerView.setAdapter(numbersAdapter);
+        }
+        else{
+            if(recyclerView != null){
+                recyclerView.setVisibility(View.GONE);
+            }
+            TextView noStoredNumbersInfo = findViewById(R.id.no_stored_numbers_info);
+            noStoredNumbersInfo.setVisibility(View.VISIBLE);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

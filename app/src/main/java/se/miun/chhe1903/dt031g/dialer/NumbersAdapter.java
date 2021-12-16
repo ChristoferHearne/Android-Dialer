@@ -33,15 +33,10 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.ViewHold
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (getItemCount() != 0){
-            Number storedCall = numbersData.get(position);
-            holder.numberTextView.setText(storedCall.getNumber());
-            holder.timeStampTextView.setText(storedCall.getTimestamp());
-            holder.locationTextView.setText("(" + String.valueOf(storedCall.getLatitude()) + ", " + String.valueOf(storedCall.getLongitude()) + ")");
-        }
-        else{
-            holder.noStoredNumbersTextView.setVisibility(View.VISIBLE);
-        }
+        Number storedCall = numbersData.get(position);
+        holder.numberTextView.setText(storedCall.getNumber());
+        holder.timeStampTextView.setText(storedCall.getTimestamp());
+        holder.locationTextView.setText("(" + String.valueOf(storedCall.getLatitude()) + ", " + String.valueOf(storedCall.getLongitude()) + ")");
     }
 
     // total number of rows
@@ -56,13 +51,12 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.ViewHold
         TextView numberTextView;
         TextView timeStampTextView;
         TextView locationTextView;
-        TextView noStoredNumbersTextView;
+
         ViewHolder(View itemView) {
             super(itemView);
             numberTextView = itemView.findViewById(R.id.call_number);
             timeStampTextView = itemView.findViewById(R.id.call_timestamp);
             locationTextView = itemView.findViewById(R.id.call_location);
-            noStoredNumbersTextView = itemView.findViewById(R.id.no_stored_numbers_info);
         }
     }
 }
