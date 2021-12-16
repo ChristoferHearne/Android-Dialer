@@ -17,5 +17,5 @@ public interface NumberDao {
     void InsertOne(Number number);
 
     @Delete
-    void DeleteAll(Number... numbers);
+    void DeleteAll(List<Number> numbers);
 }

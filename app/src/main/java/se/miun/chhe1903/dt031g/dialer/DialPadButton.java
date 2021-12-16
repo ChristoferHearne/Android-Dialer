@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ public class DialPadButton extends ConstraintLayout {
     private TextView titleText;
     private TextView messageText;
     private TextView numberInput; 
-    private SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
+    private final SoundPlayer soundPlayer = SoundPlayer.getInstance(this.getContext());
 
     // Constructor with context and AttributeSet
     public DialPadButton(Context context, AttributeSet attrs) {

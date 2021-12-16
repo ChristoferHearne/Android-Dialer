@@ -35,7 +35,6 @@ public class Dialpad extends ConstraintLayout {
         }
         backspaceButton = findViewById(R.id.backspace_button);
         backspaceButton.setOnClickListener(textView -> numberInput.setText(deleteLastEntry(numberInput)));
-
     }
 
     private void addNumberToInput(DialPadButton dialPadButton){

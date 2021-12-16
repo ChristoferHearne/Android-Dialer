@@ -15,10 +15,18 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
+
+import se.miun.chhe1903.dt031g.dialer.data.Number;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDao;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDatabase;
 
 public class SettingsActivity extends AppCompatActivity {
     // Instance variables
+    private static NumberDatabase db;
+    private static NumberDao numberDao;
+    private static List<Number> storedNumbers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +72,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static void deleteNumbers(Context context){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Map<String, ?> keys = sharedPreferences.getAll();
-        for (Map.Entry<String, ?> entry: keys.entrySet()){
-            if (entry.getKey().contains("store_number_")){
-                editor.remove(entry.getKey());
-                editor.commit();
-            }
-        }
+        db = NumberDatabase.getInstance(context);
+        numberDao = db.numberDao();
+        storedNumbers = numberDao.getAll();
+        numberDao.DeleteAll(storedNumbers);
     }
 
 

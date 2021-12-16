@@ -13,32 +13,32 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import se.miun.chhe1903.dt031g.dialer.SettingsActivity;
+import se.miun.chhe1903.dt031g.dialer.data.Number;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDao;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDatabase;
 
+import java.util.List;
 import java.util.Map;
 
 public class CallListActivity extends AppCompatActivity {
+    private List<Number> storedNumbers;
+    private NumberDatabase db;
+    private NumberDao numberDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_list);
+        db = NumberDatabase.getInstance(getApplicationContext());
+        numberDao = db.numberDao();
         addStoredNumbersToTextView();
     }
     private void addStoredNumbersToTextView(){
         TextView textView = findViewById(R.id.callListTextView);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Map<String, ?> keys = prefs.getAll();
-        if (keys.size() == 1 || keys.size() == 0){
-            textView.setText("You have no stored numbers yet");
-        }
-        else{
-            textView.setText("Your stored numbers: \n");
-            for (Map.Entry<String, ?> entry: keys.entrySet()){
-                if (entry.getKey().contains("store_number_")){
-                    textView.append(entry.getValue().toString() + "\n");
-                }
-            }
+        storedNumbers = numberDao.getAll();
+        for (Number storedNumber: storedNumbers){
+            textView.append(storedNumber.getNumber() + "");
         }
     }
     @Override

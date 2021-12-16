@@ -23,4 +23,29 @@ public class Number {
 
     @ColumnInfo(name="longitude")
     public double longitude;
+
+    public void setNumber(String number){
+        this.number = number;
+    }
+    public void setTimestamp(String timestamp){
+        this.timestamp = timestamp;
+    }
+    public void setLatitude(double latitude){
+        this.latitude = latitude;
+    }
+    public void setLongitude(double longitude){
+        this.longitude = longitude;
+    }
+    public String getNumber(){
+        return this.number;
+    }
+    public String getTimestamp(){
+        return this.timestamp;
+    }
+    public double getLatitude(){
+        return this.latitude;
+    }
+    public double getLongitude(){
+        return this.longitude;
+    }
 }

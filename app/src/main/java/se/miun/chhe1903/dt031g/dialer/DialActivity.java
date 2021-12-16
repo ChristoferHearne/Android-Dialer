@@ -21,15 +21,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import se.miun.chhe1903.dt031g.dialer.data.Number;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDao;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDatabase;
+
 
 public class DialActivity extends AppCompatActivity {
     private final int MY_PERMISSIONS_CODE = 1;
+    private NumberDatabase db;
+    private NumberDao numberDao;
+    private List<Number> numbersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         addOnClickListenerToCallButton(this);
+        db = NumberDatabase.getInstance(getApplicationContext());
+        numberDao = db.numberDao();
     }
 
     private void addOnClickListenerToCallButton(Context context){
@@ -56,12 +69,14 @@ public class DialActivity extends AppCompatActivity {
     }
 
     private void performCallOperation(Context context){
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = pref.edit();
         TextView numberInput = findViewById(R.id.number_input);
         if (SettingsActivity.shouldStoreNumbers(context)){
-            editor.putString("store_number_" + numberInput.getText().toString(), numberInput.getText().toString()); // I put the stored number as key to make sure it has unique ID
-            editor.commit();
+            Number storedNumber = new Number();
+            storedNumber.setNumber(numberInput.getText().toString());
+            storedNumber.setTimestamp(getCurrentTime());
+            storedNumber.setLatitude(111.111111);
+            storedNumber.setLongitude(111.11111);
+            numberDao.InsertOne(storedNumber);
         }
         // Go to ACTION_DIAL
         Uri call = Uri.parse("tel:" + Uri.encode(numberInput.getText().toString().replace("\uFF0A", "*")));
@@ -109,7 +124,11 @@ public class DialActivity extends AppCompatActivity {
         }
     }
 
-
+    private String getCurrentTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = dateFormat.format(new Date());
+        return currentDate;
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

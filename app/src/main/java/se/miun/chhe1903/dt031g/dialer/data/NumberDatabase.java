@@ -15,6 +15,7 @@ public abstract class NumberDatabase extends RoomDatabase {
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), NumberDatabase.class, DB_NAME)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;
