@@ -8,15 +8,24 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
+import se.miun.chhe1903.dt031g.dialer.data.Number;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDao;
+import se.miun.chhe1903.dt031g.dialer.data.NumberDatabase;
 import se.miun.chhe1903.dt031g.dialer.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     // Auto-created stub from wizard
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private NumberDatabase db;
+    private NumberDao numberDao;
+    private List<Number> storedCalls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +57,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        addCallMarkers();
+    }
+
+    private void addCallMarkers(){
+        db = NumberDatabase.getInstance(this);
+        numberDao = db.numberDao();
+        storedCalls = numberDao.getAll();
+        for (Number storedCall: storedCalls){
+            Boolean hasLocationData = storedCall.getLatitude() != 0.0 && storedCall.getLongitude() != 0.0;
+            if (hasLocationData){
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(storedCall.getLatitude(), storedCall.getLongitude()))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_call_24)))
+                        .setTitle(storedCall.getNumber());
+            }
+        }
     }
 }

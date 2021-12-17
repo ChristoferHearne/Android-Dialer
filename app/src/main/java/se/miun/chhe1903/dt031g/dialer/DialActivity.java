@@ -82,6 +82,9 @@ public class DialActivity extends AppCompatActivity {
             }
             else{
                 requestPermissions();
+                if (callPermissionGranted){
+                    performCallOperation(context);
+                }
             }
         });
     }
