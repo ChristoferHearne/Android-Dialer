@@ -36,7 +36,12 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.ViewHold
         Number storedCall = numbersData.get(position);
         holder.numberTextView.setText(storedCall.getNumber());
         holder.timeStampTextView.setText(storedCall.getTimestamp());
-        holder.locationTextView.setText("(" + String.valueOf(storedCall.getLatitude()) + ", " + String.valueOf(storedCall.getLongitude()) + ")");
+
+        Boolean hasLocationData = storedCall.getLatitude()!= 0.0 && storedCall.getLongitude() != 0.0;
+        String latitude = String.valueOf(storedCall.getLatitude());
+        String longitude = String.valueOf(storedCall.getLongitude());
+
+        holder.locationTextView.setText(hasLocationData ? "[" + longitude + ", " + latitude + "]" : "[?, ?] " );
     }
 
     // total number of rows

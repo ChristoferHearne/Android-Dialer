@@ -41,7 +41,6 @@ public class CallListActivity extends AppCompatActivity {
     }
     private void updateRecyclerView(){
         storedNumbers = numberDao.getAll();
-
         if (storedNumbers.size() != 0){
             recyclerView = findViewById(R.id.numbers_rv);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));

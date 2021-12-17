@@ -21,6 +21,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +38,9 @@ public class DialActivity extends AppCompatActivity {
     private NumberDatabase db;
     private NumberDao numberDao;
     private List<Number> numbersList;
+    private FusedLocationProviderClient locationClient;
+    private double locationLatitude;
+    private double locationLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,18 @@ public class DialActivity extends AppCompatActivity {
         addOnClickListenerToCallButton(this);
         db = NumberDatabase.getInstance(getApplicationContext());
         numberDao = db.numberDao();
+        locationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location != null) {
+                    locationLatitude = location.getLatitude();
+                    locationLongitude = location.getLongitude();
+                }
+            });
+        }
+
+
     }
 
     private void addOnClickListenerToCallButton(Context context){
@@ -74,14 +92,22 @@ public class DialActivity extends AppCompatActivity {
             Number storedNumber = new Number();
             storedNumber.setNumber(numberInput.getText().toString());
             storedNumber.setTimestamp(getCurrentTime());
-            storedNumber.setLatitude(111.111111);
-            storedNumber.setLongitude(111.11111);
+            getLocation();
+            storedNumber.setLatitude(locationLatitude);
+            storedNumber.setLongitude(locationLongitude);
             numberDao.InsertOne(storedNumber);
         }
         // Go to ACTION_DIAL
         Uri call = Uri.parse("tel:" + Uri.encode(numberInput.getText().toString().replace("\uFF0A", "*")));
         Intent callIntent = new Intent(Intent.ACTION_CALL, call);
         context.startActivity(callIntent);
+    }
+
+    private void getLocation(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationClient.getLastLocation();
+        }
     }
 
 
