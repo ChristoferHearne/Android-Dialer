@@ -16,6 +16,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -58,11 +59,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLngBounds sweden = new LatLngBounds(new LatLng(55.001099, 11.10694), new LatLng(69.063141, 24.16707));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(sweden, 32));
         addCallMarkers();
     }
 
@@ -75,8 +73,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (hasLocationData){
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(storedCall.getLatitude(), storedCall.getLongitude()))
-                        .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_call_24)))
-                        .setTitle(storedCall.getNumber());
+                        .title(storedCall.getNumber())
+                        .snippet(storedCall.getTimestamp())
+                        .icon(bitmapDescriptorFromVector(getApplicationContext(), R.mipmap.ic_launcher_foreground)));
+
             }
         }
     }
