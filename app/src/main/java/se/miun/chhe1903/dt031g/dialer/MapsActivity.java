@@ -1,13 +1,14 @@
 package se.miun.chhe1903.dt031g.dialer;
 
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,7 +28,6 @@ import se.miun.chhe1903.dt031g.dialer.data.NumberDatabase;
 import se.miun.chhe1903.dt031g.dialer.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    // Auto-created stub from wizard
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private NumberDatabase db;
@@ -47,15 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -65,9 +56,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void addCallMarkers(){
+
+        // Get calls
         db = NumberDatabase.getInstance(this);
         numberDao = db.numberDao();
         storedCalls = numberDao.getAll();
+
+        // Create custom marker
+        int height = 100;
+        int width = 100;
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.mipmap.ic_launcher_foreground);
+        Bitmap b = bitmapDrawable.getBitmap();
+        Bitmap customMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
         for (Number storedCall: storedCalls){
             Boolean hasLocationData = storedCall.getLatitude() != 0.0 && storedCall.getLongitude() != 0.0;
             if (hasLocationData){
@@ -75,18 +76,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .position(new LatLng(storedCall.getLatitude(), storedCall.getLongitude()))
                         .title(storedCall.getNumber())
                         .snippet(storedCall.getTimestamp())
-                        .icon(bitmapDescriptorFromVector(getApplicationContext(), R.mipmap.ic_launcher_foreground)));
+                        .icon(BitmapDescriptorFactory.fromBitmap(customMarker)));
 
             }
         }
-    }
-
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 }

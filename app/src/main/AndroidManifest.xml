@@ -30,7 +30,9 @@
         </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" /> <!-- Activities -->
+            android:value="@string/google_maps_key" />
+
+        <!-- Activities -->
         <activity
             android:name=".DialActivity"
             android:parentActivityName=".MainActivity" >
@@ -58,6 +60,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+            <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
         </activity>
         <activity
             android:name=".MainActivity"
